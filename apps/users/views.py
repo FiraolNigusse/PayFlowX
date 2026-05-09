@@ -2,6 +2,7 @@ from rest_framework import status, views
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
+from drf_spectacular.utils import extend_schema
 from apps.users.serializers import RegistrationSerializer, UserSerializer
 from apps.users.services import IdentityService
 
@@ -11,6 +12,10 @@ class RegisterView(views.APIView):
     """
     permission_classes = [AllowAny]
 
+    @extend_schema(
+        request=RegistrationSerializer,
+        responses={201: UserSerializer},
+    )
     def post(self, request):
         serializer = RegistrationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

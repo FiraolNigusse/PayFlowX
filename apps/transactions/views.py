@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
 from django.core.exceptions import ValidationError as DjangoValidationError
 from rest_framework.exceptions import ValidationError as DRFValidationError
+from drf_spectacular.utils import extend_schema
 from apps.transactions.models import Transaction
 from apps.transactions.serializers import (
     TransactionSerializer, DepositRequestSerializer, TransferRequestSerializer
@@ -32,6 +33,10 @@ class DepositView(views.APIView):
     """
     permission_classes = [IsAuthenticated]
 
+    @extend_schema(
+        request=DepositRequestSerializer,
+        responses={201: TransactionSerializer},
+    )
     def post(self, request):
         serializer = DepositRequestSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -56,6 +61,10 @@ class TransferView(views.APIView):
     """
     permission_classes = [IsAuthenticated]
 
+    @extend_schema(
+        request=TransferRequestSerializer,
+        responses={201: TransactionSerializer},
+    )
     def post(self, request):
         serializer = TransferRequestSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

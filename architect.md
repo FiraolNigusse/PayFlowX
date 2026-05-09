@@ -50,4 +50,4 @@ The `idempotency_key` is a unique constraint in the PostgreSQL `transactions` ta
 
 ---
 *Document Version: 1.0.0*
-*Architect: Antigravity*
+
