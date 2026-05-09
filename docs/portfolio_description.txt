@@ -1,0 +1,5 @@
+PayFlowX is a distributed fintech transaction engine built with Django REST Framework, PostgreSQL, Redis, Celery, Docker, and JWT authentication.
+
+The system simulates asynchronous peer-to-peer payments with idempotent transaction handling, pessimistic locking, retry strategies, audit trails, and real-time task monitoring through Flower.
+
+Designed as a production-style backend architecture, PayFlowX demonstrates distributed systems engineering, async processing, scalable API design, and financial transaction integrity.
